@@ -2,11 +2,11 @@
 # @Author: Leif
 # @Date:   2017-05-19 13:00:24
 # @Last Modified by:   Leif
-# @Last Modified time: 2017-05-20 01:52:43
+# @Last Modified time: 2017-05-20 10:49:22
 import matplotlib.pyplot as plt
 
 
-#we define task is a triple [name, arrive_time, service time]
+#we define task as a triple [name, arrive_time, service time]
 class Task:
 
 	def __init__(self, name, arriveTime, serviceTime):
@@ -83,10 +83,11 @@ class Simulator:
 			print self.__log[task.name][1][0],'\t',
 			print self.__log[task.name][1][-1],'\t',
 			print self.__log[task.name][1][-1] - self.__log[task.name][1][0],'\t',
-			print (self.__log[task.name][1][-1] - self.__log[task.name][1][0])//task.serviceTime, '\t'
+			print round((self.__log[task.name][1][-1] - self.__log[task.name][1][0])/float(task.serviceTime),2), '\t'
 
 	def plot(self):
 		plt.figure(figsize = (8,5))
+		plt.title("HRN Diagram")
 		plt.xlabel("Time")
 		plt.ylabel("Process")
 		plt.ylim(0, self.__nextPid)

@@ -2,7 +2,7 @@
 # @Author: Leif
 # @Date:   2017-05-19 13:00:24
 # @Last Modified by:   Leif
-# @Last Modified time: 2017-05-20 01:48:23
+# @Last Modified time: 2017-05-20 02:07:06
 import Queue
 import matplotlib.pyplot as plt
 
@@ -18,13 +18,17 @@ class Task:
 
 class Simulator:
 
-	def __init__(self,  taskList, timeSlice =  float("inf")):
+	def __init__(self,  taskList, strategy = "FCFS"):
+		self.__strategy = strategy
 		self.__taskList = taskList # a list of tasks
 		self.__taskCount = len(taskList)
 		self.__clock = 0
 		self.__queue = Queue.Queue(-1)
 		self.__log = {}
-		self.__timeSlice = timeSlice
+		if(strategy == "FCFS"):
+			self.__timeSlice = float("inf")
+		else:
+			self.__timeSlice = 1
 		self.__countDown = 0
 		self.__taskOngoing = None
 		self.__nextPid = 1
@@ -83,6 +87,7 @@ class Simulator:
 
 	def plot(self):
 		plt.figure(figsize = (8,5))
+		plt.title(self.__strategy + " Diagram")
 		plt.xlabel("Time")
 		plt.ylabel("Process")
 		plt.ylim(0, self.__nextPid)
@@ -113,8 +118,8 @@ class Simulator:
 taskList = [Task('A', 0, 3), Task('B', 2, 6), Task('C', 4, 4),
 Task('D', 6, 5), Task('E', 8, 2)]
 
-simulator = Simulator(taskList,timeSlice = 1)#RR
-#simulator = Simulator(taskList,timeSlice = float("inf")) #FCFS
+simulator = Simulator(taskList,"RR")#RR
+#simulator = Simulator(taskList,"FCFS")#FCFS
 simulator.process()
 simulator.showIndex()
 #simulator.showLog()

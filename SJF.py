@@ -2,7 +2,7 @@
 # @Author: Leif
 # @Date:   2017-05-19 13:00:24
 # @Last Modified by:   Leif
-# @Last Modified time: 2017-05-20 01:52:10
+# @Last Modified time: 2017-05-20 01:57:52
 import Queue
 import matplotlib.pyplot as plt
 
@@ -78,6 +78,7 @@ class Simulator:
 
 	def plot(self):
 		plt.figure(figsize = (8,5))
+		plt.title("SJF Diagram")
 		plt.xlabel("Time")
 		plt.ylabel("Process")
 		plt.ylim(0, self.__nextPid)
