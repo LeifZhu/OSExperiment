@@ -2,7 +2,7 @@
 # @Author: Leif
 # @Date:   2017-05-19 13:00:24
 # @Last Modified by:   Leif
-# @Last Modified time: 2017-05-20 02:07:06
+# @Last Modified time: 2017-05-22 18:00:58
 import Queue
 import matplotlib.pyplot as plt
 
@@ -81,7 +81,7 @@ class Simulator:
 			print self.__log[task.name][1][0],'\t',
 			print self.__log[task.name][1][-1],'\t',
 			print self.__log[task.name][1][-1] - self.__log[task.name][1][0],'\t',
-			print (self.__log[task.name][1][-1] - self.__log[task.name][1][0])//task.serviceTime, '\t'
+			print round((self.__log[task.name][1][-1] - self.__log[task.name][1][0])/float(task.serviceTime),2), '\t'
 
 
 
