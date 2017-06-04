@@ -2,12 +2,12 @@
 # @Author: Leif
 # @Date:   2017-05-19 13:00:24
 # @Last Modified by:   Leif
-# @Last Modified time: 2017-05-22 18:01:26
+# @Last Modified time: 2017-06-04 16:47:02
 import Queue
 import matplotlib.pyplot as plt
 
 
-#we define task is a triple [name, arrive_time, service time]
+#we define task as a triple [name, arrive_time, service time]
 class Task:
 
 	def __init__(self, name, arriveTime, serviceTime):
@@ -95,7 +95,7 @@ class Simulator:
 				else:
 					plt.plot(x, y, "r-", linewidth = 2)
 		plt.yticks(pids, names)
-		#for set the scale increment to 1
+		#for setting the scale increment to 1
 		plt.xticks(range(int(plt.xlim()[1])+1))
 		#for plotting legend
 		plt.plot([],[],"r-", linewidth = 2, label = "executing")
