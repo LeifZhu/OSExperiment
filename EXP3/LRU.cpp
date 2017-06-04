@@ -3,38 +3,42 @@
 * @Email: leifzhu@foxmail.com
 * @Date:   2017-05-22 20:38:39
 * @Last Modified by:   Leif
-* @Last Modified time: 2017-05-22 22:16:53
+* @Last Modified time: 2017-05-26 12:21:58
 */
 #include <iostream>
 #include <vector>
 using namespace std;
 
-struct Task
+struct Node
 {
 	int pid;
-	Task* next;
-	Task()
+	int address; //for completed simulation
+	Node* next;
+	Node()
 	{
 		pid = -1;
 		next = NULL;
+		address = -1;
 	}
 };
 
-Task* precursor[1000];
+void place(int pid, int address){} //for completed simulation
+
+Node* precursor[1000];
 void LRUSimulate(vector<int> const &taskList, int pageNum)
 {
 	// I use linklist to optimize the action of putting a task
 	// to the end of queue to O(1) time.
-	Task *head = new Task;
-	Task *last = head;
+	Node *head = new Node;
+	Node *last = head;
 	for(int i = 0; i < pageNum; i++)
 	{
-		last->next = new Task;
+		last->next = new Node;
 		last = last->next;
+		last->address = i;
 	}
-	Task *tail = last;
+	Node *tail = last;
 	int frequency = 0;
-	vector<int> eliminateList;
 
 	memset(precursor,0,sizeof(precursor));
 
@@ -48,9 +52,10 @@ void LRUSimulate(vector<int> const &taskList, int pageNum)
 			precursor[head->next->pid] = NULL;//the front element pop out
 			head->next->pid = taskList[i];
 			precursor[taskList[i]] = head;
+			place(taskList[i], head->next->address);
 		}
-		Task *pre = precursor[taskList[i]];
-		Task *cur =  precursor[taskList[i]]->next;
+		Node *pre = precursor[taskList[i]];
+		Node *cur =  precursor[taskList[i]]->next;
 		tail->next = cur;
 		precursor[cur->pid] = tail;
 		tail = cur;
@@ -61,10 +66,10 @@ void LRUSimulate(vector<int> const &taskList, int pageNum)
 	cout<<"frequency:"<<frequency<<endl;
 	cout<<"rate:"<<frequency/(float)taskList.size()<<endl;
 
-	Task *cur = head;
+	Node *cur = head;
 	while(cur != NULL)
 	{
-		Task *tmp = cur;
+		Node *tmp = cur;
 		cur = cur->next;
 		delete tmp;
 	}
