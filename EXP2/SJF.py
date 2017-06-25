@@ -2,10 +2,9 @@
 # @Author: Leif
 # @Date:   2017-05-19 13:00:24
 # @Last Modified by:   Leif
-# @Last Modified time: 2017-06-04 16:47:02
+# @Last Modified time: 2017-06-24 23:28:16
 import Queue
 import matplotlib.pyplot as plt
-
 
 #we define task as a triple [name, arrive_time, service time]
 class Task:
@@ -102,9 +101,6 @@ class Simulator:
 		plt.plot([],[],"b:", linewidth = 2, label = "waiting")
 		plt.legend(loc = "upper left")
 		plt.show()
-
-
-
 
 taskList = [Task('A', 0, 3), Task('B', 2, 6), Task('C', 4, 4),
 Task('D', 6, 5), Task('E', 8, 2)]

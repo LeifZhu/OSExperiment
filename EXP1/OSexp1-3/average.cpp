@@ -2,9 +2,7 @@
 #include <cctype>
 #include <cstdlib>
 using namespace std;
-
-
-int strType(char* str)//this is a automatain fact
+int strType(char* str)//this is a automata for recognizing prameters
 {
 	int flag = 0; // 0:not a number 1:int 2:float
 	int i;
@@ -49,8 +47,7 @@ int main(int argc, char *argv[])
 	 else
 	 {
 	 	int flag1 = strType(argv[1]), flag2 = strType(argv[2]), flag3 = strType(argv[3]);
-	 	//cout<<flag1<<flag2<<endl;
-	 	if(flag1 == 0 || flag2 == 0 || flag3 == 0) //at least one prameters isn't a number
+	 	if(flag1 == 0 || flag2 == 0 || flag3 == 0) //at least one prameter isn't a number
 	 	{
 	 		cout<<"all prameters should be integers or float numbers"<<endl;
 	 	}

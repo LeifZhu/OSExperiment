@@ -2,7 +2,7 @@
 * @Author: Leif
 * @Date:   2017-05-15 19:46:00
 * @Last Modified by:   Leif
-* @Last Modified time: 2017-05-17 00:53:55
+* @Last Modified time: 2017-06-24 21:37:05
 */
 
 #include <unistd.h>
@@ -46,20 +46,12 @@ bool found(string str)
 	//i < command.size() means str is found in command list
 }
 
-
-
-
-
 int main()
 {
 	printf("Welcome to naive shell!\n");
-	//"Only max(m,n)/min(m,n)/average(m,n,l) supported.";
-	//"Input \"exit\" to exit.";
-	//"=================================================";
     char *userName= getenv("USER");
-    //char *deviceName = getenv("HOSTNAME");
     getcwd(path, MAXPATHSIZE);
-    printf("%s %s>",userName,path);
+    printf("%s>>",userName);
     ch = getchar();
     while(1)
     {
@@ -97,12 +89,13 @@ int main()
 					else
 					{
 						usleep(100000);
-						//parent process sleep 0.1s, so that subprocess can print info to screen before prompt show up again
+						/*parent process sleep 0.1s, so that subprocess 
+						can print info to screen before prompt show up again*/
 					}
 				}
 			}
 		}
-		printf("%s %s>",userName,path);
+		printf("%s>>",userName);
 		ch = getchar();
 	}
 	return 0;
